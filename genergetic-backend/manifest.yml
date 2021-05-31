@@ -1,5 +1,6 @@
 ---
 applications:
- - name: GetStartedNode
+ - name: Genergetic
    random-route: true
    memory: 256M
+  
