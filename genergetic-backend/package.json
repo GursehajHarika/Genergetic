@@ -13,11 +13,14 @@
   },
   "dependencies": {
     "@cloudant/cloudant": "^4.3.0",
+    "@wiotp/sdk": "^0.7.8",
+    "async": "^3.2.0",
     "body-parser": "^1.19.0",
     "cfenv": "^1.2.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongodb": "^3.6.4"
+    "mongodb": "^3.6.4",
+    "swagger-ui-express": "^4.1.6"
   },
   "author": "IBM Corp",
   "license": "Apache-2.0"

@@ -2,6 +2,90 @@ var express = require("express");
 var app = express();
 var cfenv = require("cfenv");
 var bodyParser = require('body-parser')
+var ApplicationClient = require('@wiotp/sdk').ApplicationClient;
+var ApplicationConfig = require('@wiotp/sdk').ApplicationConfig;
+var device = require('./modules/devices.js')
+var reading = require('./modules/readings.js')
+var https = require('https')
+var async = require('async');
+var username = 'a-0lzl19-f3ejwfqnrx'
+var password = 'qS+?1j-fj(kQEA6fIp'
+
+process.env['WIOTP_AUTH_KEY'] = 'a-0lzl19-c2txaodlew';
+process.env['WIOTP_AUTH_TOKEN'] = 'rc18h4LH+pX@)CpKdy';
+
+
+let onEventReceived = function(typeId, deviceId, eventId, format, payload) {
+  payload = JSON.parse(payload)
+  const query = {
+    selector: {
+      deviceId: { "$eq": deviceId},
+      eventId : { "$eq": eventId },
+      typeId: {'$eq': typeId}
+    }
+  };
+  devicedb.find(query, function(err, body, header){
+    if(err){
+      console.log(err)
+      devicedb.insert({deviceId: deviceId, typeId: typeId, eventId: eventId}, function(err, body, header){
+        if(err){
+          console.log('[device db]' + err)
+        }
+        else {
+          console.log(body)
+        }
+      })
+    }
+    else{
+      console.log(body)
+    }
+  })
+  
+  readingdb.insert({timestamp: payload.timestamp, deviceId: deviceId, eventId: eventId,power: payload.power}, function(err, body, header){
+    if(err){
+      console.log('[reading db]' + err)
+    }
+    else {
+      console.log(body)
+    }
+  })
+
+  
+}
+
+let appConfig = ApplicationConfig.parseEnvVars();
+let appClient = new ApplicationClient(appConfig);
+appClient.connect();
+appClient.on("deviceEvent", onEventReceived);
+
+var request = https.request({
+  host:'0lzl19.internetofthings.ibmcloud.com',
+  port:'443',
+  path:'/api/v0002/bulk/devices',
+  method: 'GET',
+  headers: {
+      Authorization: 'Basic ' + Buffer.from(username + ':' + password).toString('base64')
+  }
+}, function(response){
+  var data = '';
+  response.setEncoding('utf8');
+  response.on('data', (chunk)=>{
+      data += chunk
+  })
+  response.on('end', ()=>{
+    data = JSON.parse(data);
+    async.forEach(data.results, function(device, index, callback){
+      appClient.subscribeToEvents(device.typeId, device.deviceId, 'status', 'json');
+    })
+  })
+})
+request.on('error', (e)=>{
+  console.error(`problem with request: ${e.message}`);
+})
+request.end()
+
+app.use('/devices', device);
+app.use('/readings', reading)
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -9,11 +93,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-let mydb, cloudant;
+let mydb, devicedb, readingdb, cloudant;
 var vendor; // Because the MongoDB and Cloudant use different API commands, we
             // have to check which command should be used based on the database
             // vendor.
 var dbName = 'mydb';
+var deDBName = 'devicedb';
+var reDBName = 'readingdb';
 
 // Separate functions are provided for inserting/retrieving content from
 // MongoDB and Cloudant databases. These functions must be prefixed by a
@@ -47,32 +133,6 @@ getAll.cloudant = function(response) {
     }
   });
   //return names;
-}
-
-let collectionName = 'mycollection'; // MongoDB requires a collection name.
-
-insertOne.mongodb = function(doc, response) {
-  mydb.collection(collectionName).insertOne(doc, function(err, body, header) {
-    if (err) {
-      console.log('[mydb.insertOne] ', err.message);
-      response.send("Error");
-      return;
-    }
-    doc._id = body.id;
-    response.send(doc);
-  });
-}
-
-getAll.mongodb = function(response) {
-  var names = [];
-  mydb.collection(collectionName).find({}, {fields:{_id: 0, count: 0}}).toArray(function(err, result) {
-    if (!err) {
-      result.forEach(function(row) {
-        names.push(row.name);
-      });
-      response.json(names);
-    }
-  });
 }
 
 /* Endpoint to greet and add a new visitor to database.
@@ -123,38 +183,7 @@ const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
 
 const appEnv = cfenv.getAppEnv(appEnvOpts);
 
-if (appEnv.services['compose-for-mongodb'] || appEnv.getService(/.*[Mm][Oo][Nn][Gg][Oo].*/)) {
-  // Load the MongoDB library.
-  var MongoClient = require('mongodb').MongoClient;
-
-  dbName = 'mydb';
-
-  // Initialize database with credentials
-  if (appEnv.services['compose-for-mongodb']) {
-    MongoClient.connect(appEnv.services['compose-for-mongodb'][0].credentials.uri, null, function(err, db) {
-      if (err) {
-        console.log(err);
-      } else {
-        mydb = db.db(dbName);
-        console.log("Created database: " + dbName);
-      }
-    });
-  } else {
-    // user-provided service with 'mongodb' in its name
-    MongoClient.connect(appEnv.getService(/.*[Mm][Oo][Nn][Gg][Oo].*/).credentials.uri, null,
-      function(err, db) {
-        if (err) {
-          console.log(err);
-        } else {
-          mydb = db.db(dbName);
-          console.log("Created database: " + dbName);
-        }
-      }
-    );
-  }
-
-  vendor = 'mongodb';
-} else if (appEnv.services['cloudantNoSQLDB'] || appEnv.getService(/[Cc][Ll][Oo][Uu][Dd][Aa][Nn][Tt]/)) {
+if (appEnv.services['cloudantNoSQLDB'] || appEnv.getService(/[Cc][Ll][Oo][Uu][Dd][Aa][Nn][Tt]/)) {
   // Load the Cloudant library.
   var Cloudant = require('@cloudant/cloudant');
 
@@ -187,11 +216,37 @@ if(cloudant) {
       console.log("Created database: " + dbName);
   });
 
+  cloudant.db.create(deDBName, function(err, data){
+    if(!err) //err if database doesn't already exists
+      console.log("Created database: " + deDBName);
+  })
+
+  cloudant.db.create(reDBName, function(err, data){
+    if(!err) //err if database doesn't already exists
+      console.log("Created database: " + reDBName);
+  })
+
   // Specify the database we are going to use (mydb)...
   mydb = cloudant.db.use(dbName);
-
+  devicedb = cloudant.db.use(deDBName);
+  readingdb = cloudant.db.use(reDBName)
   vendor = 'cloudant';
 }
+
+const deviceindex = {
+  name: 'device',
+  index: {
+    fields: [
+      'deviceId',
+      'typeId',
+      'eventId'
+    ]
+  }
+}
+devicedb.index(deviceindex, function(err, result){
+  console.log(result);
+  
+})
 
 //serve static file (index.html, images, css)
 app.use(express.static(__dirname + '/views'));
@@ -200,3 +255,7 @@ var port = process.env.PORT || 3000
 app.listen(port, function() {
     console.log("To view your app, open this link in your browser: http://localhost:" + port);
 });
+
+module.exports = {
+  appClient: appClient
+}
