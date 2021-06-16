@@ -9,16 +9,34 @@
   </head>
 
   <body>
+   
+  
+
     <table>
+    <tr>
+    <th>
+    <h1>Welcome to Genergetic </h1>
+    </th>
+    </tr>
       <tr>
         <td style= "width:30%;">
-          <img class = "newappIcon" src="images/newapp-icon.png">
-        </td>
+         <div test="login">
+    Click the button to begin  <!--<button type="button">Login</button> -->    
+    </div>
+    </td>
         <td>
-          <h1>Welcome to Genergetic</h1>
-        </td>
+   <div id = "test">
+     <button id="myButton" class="float-left submit-button" >test</button>
+    </div>
+            </td>
       </tr>
     </table>
+    
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "homepage.html";
+    };
+</script>
   </body>
 
 </html>

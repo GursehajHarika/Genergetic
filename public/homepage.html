@@ -1,31 +1,73 @@
 <!DOCTYPE html>
-<html>
 
-  <head>
+<html>
+<script>
+    var request = require("request")
+    request.get("https://genergetic.us-south.cf.appdomain.cloud/devices/", function(error, response, body) {
+        console.log(response)
+        console.log(error)
+        console.log(body)
+
+    })
+</script>
+
+<head>
     <title>Welcome to Genergetic</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/style.css">
-  </head>
+</head>
 
-  <body>
-    <div test="login">
-    <button type="button">Login</button>    
-    </div>
-    <div id = "test">
-    <button type="button" onclick="">Test</button>
-    </div>
-    TEST TEST
+<body>
+
     <table>
-      <tr>
-        <td style= "width:30%;">
-          <img class = "newappIcon" src="images/newapp-icon.png">
-        </td>
-        <td>
-          <h1>Welcome to Genergetic</h1>
-        </td>
-      </tr>
+        <tr>
+            <td style="width:60%;">
+                <img class="newappIcon" src="images/newapp-icon.png">
+                <h1>Device 2</h1>
+                <h3>Current Readings </h3>
+                <br>
+                <h4><b>Voltage</b>: 20 </h4>
+                <h4><b>Time since last turned on</b>: 5 </h4>
+
+                <label for="disk_c"><h4><b>Total power utilizations</b></h4></label>
+                <meter id="disk_c" value=".4" low="0.2" optimum="-.5">4</meter><br>
+
+
+            </td>
+
+            <td style="width:60%;">
+                <img class="newappIcon" src="images/newapp-icon.png">
+                <br>
+                <h1>Device 2</h1>
+                <h3>Current Readings </h3>
+                <br>
+                <h4><b>Voltage</b>: 20 </h4>
+                <h4><b>Time since last turned on</b>: 5 </h4>
+                <label for="disk_d">
+          <h4><b>Total power utilizations</b>: 20 </h4></label>
+                <meter id="disk_d" value="0.9" low=".25" optimum=".5">90%</meter>
+                <script>
+                </script>
+            </td>
+            <td>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td style="width:60%;">
+                <div id="test">
+                    <button id="myButton" class="float-left submit-button">Go back</button>
+                </div>
+                <script>
+                    document.getElementById("myButton").onclick = function() {
+                        location.href = "index.html";
+                    };
+                </script>
+            </td>
+        </tr>
     </table>
-  </body>
+</body>
 
 </html>
