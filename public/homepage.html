@@ -7,7 +7,6 @@
         console.log(response)
         console.log(error)
         console.log(body)
-
     })
 </script>
 
@@ -23,7 +22,7 @@
     <table>
         <tr>
             <td style="width:60%;">
-                <img class="newappIcon" src="images/newapp-icon.png">
+                <img class="newappIcon" src="images/img_2.jpg">
                 <h1>Device 2</h1>
                 <h3>Current Readings </h3>
                 <br>
@@ -37,7 +36,7 @@
             </td>
 
             <td style="width:60%;">
-                <img class="newappIcon" src="images/newapp-icon.png">
+                <img class="newappIcon" src="images/img_1.jpg">
                 <br>
                 <h1>Device 2</h1>
                 <h3>Current Readings </h3>
@@ -63,6 +62,22 @@
                 <script>
                     document.getElementById("myButton").onclick = function() {
                         location.href = "index.html";
+                    };
+                </script>
+
+                <div id="getter">
+                    <button id="requst_button" class="float-left submit-button">Request</button>
+                </div>
+                <script>
+                    document.getElementById("requst_button").onclick = function() {
+
+                        var request = require("request")
+                        request.get("https://genergetic.us-south.cf.appdomain.cloud/devices/", function(error, response, body) {
+                            console.log(response)
+                            console.log(error)
+                            console.log(body)
+                        })
+
                     };
                 </script>
             </td>
