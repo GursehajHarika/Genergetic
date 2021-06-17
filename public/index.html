@@ -22,36 +22,13 @@
 
 <body>
 
+    <h1 style="text-align: center;"><b>Welcome to Genergetic </b></h1>
 
 
-    <table>
-        <tr>
-            <th>
-                <h1>Welcome to Genergetic </h1>
-            </th>
-        </tr>
-        <tr>
-            <td style="width:30%;">
-                <div test="login">
-                    Click the button to begin
-                    <!--<button type="button">Login</button> -->
-                </div>
-            </td>
-            <td>
-                <div id="test">
-                    <button id="myButton" class="float-left submit-button">test</button>
-                </div>
-            </td>
-        </tr>
-    </table>
-
-    <script type="text/javascript">
-        document.getElementById("myButton").onclick = function() {
-            location.href = "homepage.html";
-        };
-    </script>
-
-    <button class="collapsible">Open Device 1 <img class="newappIcon" src="images/newapp-icon.png">
+    <button class="collapsible">
+      <div class="column">
+        Open Device 1 </div>
+        <div class="column"><img class="newappIcon" src="images/img_1.jpg"></div>
     </button>
     <div class="content">
         <h1>Device 1</h1>
@@ -62,8 +39,17 @@
 
         <label for="disk_c"><h4><b>Total power utilizations</b></h4></label>
         <meter id="disk_c" value=".4" low="0.2" optimum="-.5">4</meter><br>
+
+        <div id="test">
+            <button id="Device_1" class="float-left submit-button">Learn More</button>
+        </div>
+        <script type="text/javascript">
+            document.getElementById("Device_1").onclick = function() {
+                location.href = "homepage.html";
+            };
+        </script>
     </div>
-    <button class="collapsible">Open Device 2  <img class="newappIcon" src="images/newapp-icon.png">
+    <button class="collapsible">Open Device 2  <img class="newappIcon" src="images/img_2.jpg">
     </button>
     <div class="content">
         <h1>Device 2</h1>
@@ -74,6 +60,15 @@
         <label for="disk_d">
 <h4><b>Total power utilizations</b>: 20 </h4></label>
         <meter id="disk_d" value="0.9" low=".25" optimum=".5">90%</meter>
+
+        <div id="test">
+            <button id="Device_2" class="float-left submit-button">Learn More</button>
+        </div>
+        <script type="text/javascript">
+            document.getElementById("Device_2").onclick = function() {
+                location.href = "homepage.html";
+            };
+        </script>
     </div>
 
     <script>
@@ -96,11 +91,7 @@
 
 
 
-
-
-
-
-
+    <!--
     <table>
         <tr>
             <td style="width:60%;">
@@ -149,6 +140,7 @@
             </td>
         </tr>
     </table>
+    -->
 </body>
 
 </html>
