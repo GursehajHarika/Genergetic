@@ -74,10 +74,20 @@ router.get('/:deviceId&:eventId', function(req, res){
           power: doc.power
         })
       }
+
+      device.avgPow = getAverage(device.readings);
       res.send(device)
       
     }
   })
 })
+
+function getAverage(readings){
+  let sum = 0;
+  for(reading of readings){
+    sum = sum + reading.power;
+  }
+  return sum/readings.length
+}
 
 module.exports = router;
