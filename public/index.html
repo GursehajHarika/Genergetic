@@ -15,16 +15,16 @@
 
     <script>
         /*  var requestOptions = {
-                                                                                                                                                                                                                                                            method: 'GET',
-                                                                                                                                                                                                                                                            redirect: 'follow'
-                                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                    redirect: 'follow'
+                                                                                                                                                                                                                                                                };
 
-                                                                                                                                                                                                                                                        fetch(" https://genergetic.us-south.cf.appdomain.cloud/readings/b827ebbade18&status", requestOptions)
-                                                                                                                                                                                                                                                            .then(response => response.text())
-                                                                                                                                                                                                                                                            //.then(result => console.log(result))
-                                                                                                                                                                                                                                                            .catch(error => console.log('error', error));
-                                                                                                                                                                                                                                                        console.log("%s %o", JSON.stringify(result['result']));
-                                                                                                                                                                                                                                                    */
+                                                                                                                                                                                                                                                                fetch(" https://genergetic.us-south.cf.appdomain.cloud/readings/b827ebbade18&status", requestOptions)
+                                                                                                                                                                                                                                                                    .then(response => response.text())
+                                                                                                                                                                                                                                                                    //.then(result => console.log(result))
+                                                                                                                                                                                                                                                                    .catch(error => console.log('error', error));
+                                                                                                                                                                                                                                                                console.log("%s %o", JSON.stringify(result['result']));
+                                                                                                                                                                                                                                                            */
         var time_kv = {
             "async": true,
             "crossDomain": true,
@@ -32,34 +32,34 @@
             "method": "GET"
         }
 
-        $.ajax(time_kv).done(function(response) {
-            console.log(response.readings);
+        $.ajax(time_kv).done(function(response_1) {
+                    console.log(response_1.readings);
 
 
-            document.getElementById("demo").innerHTML = response.readings[0].timestamp;
+                    document.getElementById("demo").innerHTML = response_1.readings[0].timestamp;
 
-            document.getElementById("power").innerHTML = response.readings[0].power;
-
-
-
-            var time_Rp = {
-            "async": true,
-            "crossDomain": true,
-            "url": " https://genergetic.us-south.cf.appdomain.cloud/readings/kevmacpro&status",
-            "method": "GET"
-        }
-
-        $.ajax(time_Rp).done(function(response) {
-            console.log(response.readings);
-
-
-            document.getElementById("time_kev").innerHTML = response.readings[0].timestamp;
-
-            document.getElementById("power_kev").innerHTML = response.readings[0].power;
+                    document.getElementById("power").innerHTML = response_1.readings[0].power;
 
 
 
-        });
+                    var time_Rp = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": " https://genergetic.us-south.cf.appdomain.cloud/readings/kevmacpro&status",
+                        "method": "GET"
+                    }
+
+                    $.ajax(time_Rp).done(function(response) {
+                        console.log(response.readings);
+
+
+                        document.getElementById("time_kev").innerHTML = response.readings[0].timestamp;
+
+                        document.getElementById("power_kev").innerHTML = response.readings[0].power;
+
+
+
+                    });
     </script>
 
     <div style="padding-left: 10%; padding-right: 10%; margin-left: 20%; margin-right: 20%;">
@@ -113,7 +113,9 @@
             <h3>Current Readings </h3>
             <br>
             <h4><b>Voltage</b>: 20 </h4>
-            <h4><b>Time since last turned on</b><p id="time_kev"></p></h4>
+            <h4><b>Time since last turned on</b>
+                <p id="time_kev"></p>
+            </h4>
             <label for="disk_d">
           <h4><b>Total power utilizations</b>:   <p id="power_kev"></p> </h4></label>
             <meter id="disk_d" value="0.9" low=".25" optimum=".5">90%</meter>
