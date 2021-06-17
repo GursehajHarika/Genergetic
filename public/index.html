@@ -15,16 +15,16 @@
 
     <script>
         /*  var requestOptions = {
-                                                                                                                                                                                                            method: 'GET',
-                                                                                                                                                                                                            redirect: 'follow'
-                                                                                                                                                                                                        };
+                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                    redirect: 'follow'
+                                                                                                                                                                                                                };
 
-                                                                                                                                                                                                        fetch(" https://genergetic.us-south.cf.appdomain.cloud/readings/b827ebbade18&status", requestOptions)
-                                                                                                                                                                                                            .then(response => response.text())
-                                                                                                                                                                                                            //.then(result => console.log(result))
-                                                                                                                                                                                                            .catch(error => console.log('error', error));
-                                                                                                                                                                                                        console.log("%s %o", JSON.stringify(result['result']));
-                                                                                                                                                                                                    */
+                                                                                                                                                                                                                fetch(" https://genergetic.us-south.cf.appdomain.cloud/readings/b827ebbade18&status", requestOptions)
+                                                                                                                                                                                                                    .then(response => response.text())
+                                                                                                                                                                                                                    //.then(result => console.log(result))
+                                                                                                                                                                                                                    .catch(error => console.log('error', error));
+                                                                                                                                                                                                                console.log("%s %o", JSON.stringify(result['result']));
+                                                                                                                                                                                                            */
 
         var time_Rp = {
             "async": true,
@@ -35,14 +35,8 @@
 
         $.ajax(time_Rp).done(function(response) {
             console.log(response.readings);
-            text = ""
-            myObj = JSON.parse(this.response.readings);
 
-            for (x in myObj) {
-                text += myObj[x];
-            }
-            text += "</table>"
-            document.getElementById("demo").innerHTML = text;
+            document.getElementById("demo").innerHTML = response.readings[0];
 
         });
     </script>
