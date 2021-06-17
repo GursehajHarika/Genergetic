@@ -21,7 +21,7 @@
             .then(response => response.text())
             //.then(result => console.log(result))
             .catch(error => console.log('error', error));
-        console.log("%s %o",JSON.stringify(result['result']));
+        console.log("%s %o", JSON.stringify(result['result']));
     </script>
 
     <div style="padding-left: 10%; padding-right: 10%; margin-left: 20%; margin-right: 20%;">
@@ -79,52 +79,139 @@
           <h4><b>Total power utilizations</b>: 20 </h4></label>
             <meter id="disk_d" value="0.9" low=".25" optimum=".5">90%</meter>
 
-            <div id="test">
-                <button id="Device_1" class="float-left submit-button">Learn More</button>
+            <div class="popup" onclick="myFunction()">Learn More
+                <span class="popuptext" id="myPopup">
+                
 
+                <h3>Current Readings </h3>
+                <br>
+                <h4><b>Voltage</b>: 20 </h4>
+                <br>
+                <h4>Usage based on old events</h4>
+               
+                <div id="bar-chart">
+                  <div class="graph">
+                    <ul class="x-axis">
+                      <li><span>2010</span></li>
+                <li><span>2012</span></li>
+                <li><span>2013</span></li>
+                <li><span>2014</span></li>
+                <li><span>2015</span></li>
+                </ul>
+                <ul class="y-axis">
+                    <li><span>20</span></li>
+                    <li><span>15</span></li>
+                    <li><span>10</span></li>
+                    <li><span>5</span></li>
+                    <li><span>0</span></li>
+                </ul>
+                <div class="bars">
+                    <div class="bar-group">
+                        <div class="bar bar-1 stat-1" style="height: 51%;">
+                            <span>4080</span>
+                        </div>
+                        <div class="bar bar-2 stat-2" style="height: 71%;">
+                            <span>5680</span>
+                        </div>
+                        <div class="bar bar-3 stat-3" style="height: 13%;">
+                            <span>1040</span>
+                        </div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar bar-4 stat-1" style="height: 76%;">
+                            <span>6080</span>
+                        </div>
+                        <div class="bar bar-5 stat-2" style="height: 86%;">
+                            <span>6880</span>
+                        </div>
+                        <div class="bar bar-6 stat-3" style="height: 22%;">
+                            <span>1760</span>
+                        </div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar bar-7 stat-1" style="height: 78%;">
+                            <span>6240</span>
+                        </div>
+                        <div class="bar bar-8 stat-2" style="height: 72%;">
+                            <span>5760</span>
+                        </div>
+                        <div class="bar bar-9 stat-3" style="height: 36%;">
+                            <span>2880</span>
+                        </div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar bar-10 stat-1" style="height: 44%;">
+                            <span>3520</span>
+                        </div>
+                        <div class="bar bar-11 stat-2" style="height: 64%;">
+                            <span>5120</span>
+                        </div>
+                        <div class="bar bar-12 stat-3" style="height: 59%">
+                            <span>4720</span>
+                        </div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar bar-13 stat-1" style="height: 28%;">
+                            <span>2240</span>
+                        </div>
+                        <div class="bar bar-14 stat-2" style="height: 33%;">
+                            <span>2640</span>
+                        </div>
+                        <div class="bar bar-15 stat-3" style="height: 94%;">
+                            <span>7520</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <script type="text/javascript">
-                document.getElementById("Device_1").onclick = function() {
-                    location.href = "homepage.html";
-                };
-            </script>
         </div>
 
 
-        <script>
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
-
-            for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-            }
-        </script>
-
-        <h2>Popup</h2>
-
-        <div class="popup" onclick="myFunction()">Click me to toggle the popup!
-            <span class="popuptext" id="myPopup">A Simple Popup!</span>
-        </div>
-
-        <script>
-            // When the user clicks on div, open the popup
-            function myFunction() {
-                var popup = document.getElementById("myPopup");
-                popup.classList.toggle("show");
-            }
-        </script>
+        </span>
+    </div>
 
 
+    <div id="test">
+        <button id="Device_1" class="float-left submit-button">Learn More</button>
 
-        <!--
+    </div>
+    <script type="text/javascript">
+        document.getElementById("Device_1").onclick = function() {
+            location.href = "homepage.html";
+        };
+    </script>
+    </div>
+
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+
+        // When the user clicks on div, open the popup
+        function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
+    </script>
+    <div class="popup" onclick="myFunction()">Click me to toggle the popup!
+        <span class="popuptext" id="myPopup">A Simple Popup!</span>
+    </div>
+
+
+
+
+    <!--
     <table>
         <tr>
             <td style="width:60%;">
