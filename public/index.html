@@ -66,38 +66,21 @@
 
 
             </td>
-            <button class="collapsible">Device 2</button>
-            <div class="content">
-                <td style="width:60%;">
-                    <img class="newappIcon" src="images/newapp-icon.png">
-                    <br>
-                    <h1>Device 2</h1>
-                    <h3>Current Readings </h3>
-                    <br>
-                    <h4><b>Voltage</b>: 20 </h4>
-                    <h4><b>Time since last turned on</b>: 5 </h4>
-                    <label for="disk_d">
+
+            <td style="width:60%;">
+                <img class="newappIcon" src="images/newapp-icon.png">
+                <br>
+                <h1>Device 2</h1>
+                <h3>Current Readings </h3>
+                <br>
+                <h4><b>Voltage</b>: 20 </h4>
+                <h4><b>Time since last turned on</b>: 5 </h4>
+                <label for="disk_d">
           <h4><b>Total power utilizations</b>: 20 </h4></label>
-                    <meter id="disk_d" value="0.9" low=".25" optimum=".5">90%</meter>
-                    <script>
-                        var coll = document.getElementsByClassName("collapsible");
-                        var i;
-
-                        for (i = 0; i < coll.length; i++) {
-                            coll[i].addEventListener("click", function() {
-                                this.classList.toggle("active");
-                                var content = this.nextElementSibling;
-                                if (content.style.maxHeight) {
-                                    content.style.maxHeight = null;
-                                } else {
-                                    content.style.maxHeight = content.scrollHeight + "px";
-                                }
-                            });
-                        }
-                    </script>
-                </td>
-            </div>
-
+                <meter id="disk_d" value="0.9" low=".25" optimum=".5">90%</meter>
+                <script>
+                </script>
+            </td>
             <td>
 
 
