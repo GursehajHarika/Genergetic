@@ -102,6 +102,7 @@ pre {
 .content {
     padding: 0 18px;
     max-height: 0;
+	color: black;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
     background-color: #f1f1f1;
