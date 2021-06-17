@@ -19,10 +19,9 @@
 
         fetch("https://genergetic.us-south.cf.appdomain.cloud/devices/", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            //.then(result => console.log(result))
             .catch(error => console.log('error', error));
-        console.log(JSON.stringify(result['clientId']))
-        console.log(JSON.stringify(result['result' ['clientId']]))
+        console.log(JSON.stringify(result['result']))
     </script>
 
     <div style="padding-left: 10%; padding-right: 10%; margin-left: 20%; margin-right: 20%;">
@@ -30,7 +29,8 @@
         <button class="collapsible">
       <div class="row">
       <div class="column">
-        Open Device 1 </div>
+      Device 1 
+      </div>
         <div class="column">
           <img class="newappIcon" src="images/img_1.jpg">
         </div>
@@ -57,56 +57,74 @@
                 };
             </script>
         </div>
+
         <button class="collapsible">
           <div class="row">
           <div class="column">
-            Open Device 2 </div>
+          Device 2 
+          </div>
             <div class="column">
               <img class="newappIcon" src="images/img_2.jpg">
             </div>
         
         </div>
-            <div class="content">
+        </button>
+        <div class="content">
             <h1>Device 2</h1>
             <h3>Current Readings </h3>
             <br>
             <h4><b>Voltage</b>: 20 </h4>
             <h4><b>Time since last turned on</b>: 5 </h4>
             <label for="disk_d">
-            <h4><b>Total power utilizations</b>: 20 </h4></label>
+          <h4><b>Total power utilizations</b>: 20 </h4></label>
             <meter id="disk_d" value="0.9" low=".25" optimum=".5">90%</meter>
-            <br>
+
             <div id="test">
-                <button id="Device_2" class="float-left submit-button">Learn More</button>
-    </div>
-    <script type="text/javascript">
-        document.getElementById("Device_2").onclick = function() {
-            location.href = "homepage.html";
-        };
-    </script>
-    </div>
+                <button id="Device_1" class="float-left submit-button">Learn More</button>
 
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        }
-    </script>
+            </div>
+            <script type="text/javascript">
+                document.getElementById("Device_1").onclick = function() {
+                    location.href = "homepage.html";
+                };
+            </script>
+        </div>
 
 
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            }
+        </script>
+
+        <h2>Popup</h2>
+
+        <div class="popup" onclick="myFunction()">Click me to toggle the popup!
+            <span class="popuptext" id="myPopup">A Simple Popup!</span>
+        </div>
+
+        <script>
+            // When the user clicks on div, open the popup
+            function myFunction() {
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+            }
+        </script>
 
 
-    <!--
+
+        <!--
     <table>
         <tr>
             <td style="width:60%;">
