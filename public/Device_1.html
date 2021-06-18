@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Welcome to Genergetic</title>
+    <title>Device 1</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/style.css">
@@ -15,15 +15,15 @@
 
     <script>
         /*  var requestOptions = {                                                                                                                                                                                                                                 method: 'GET',
-                                                                                                                                                                                                                                                                                            redirect: 'follow'
-                                                                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                                                                                                            redirect: 'follow'
+                                                                                                                                                                                                                                                                                                                        };
 
-                                                                                                                                                                                                                                                                                        fetch(" https://genergetic.us-south.cf.appdomain.cloud/readings/b827ebbade18&status", requestOptions)
-                                                                                                                                                                                                                                                                                            .then(response => response.text())
-                                                                                                                                                                                                                                                                                            //.then(result => console.log(result))
-                                                                                                                                                                                                                                                                                            .catch(error => console.log('error', error));
-                                                                                                                                                                                                                                                                                        console.log("%s %o", JSON.stringify(result['result']));
-                                                                                                                                                                                                                                                                                    */
+                                                                                                                                                                                                                                                                                                                        fetch(" https://genergetic.us-south.cf.appdomain.cloud/readings/b827ebbade18&status", requestOptions)
+                                                                                                                                                                                                                                                                                                                            .then(response => response.text())
+                                                                                                                                                                                                                                                                                                                            //.then(result => console.log(result))
+                                                                                                                                                                                                                                                                                                                            .catch(error => console.log('error', error));
+                                                                                                                                                                                                                                                                                                                        console.log("%s %o", JSON.stringify(result['result']));
+                                                                                                                                                                                                                                                                                                                    */
 
         var time_Rp = {
             "async": true,
@@ -50,15 +50,35 @@
         <button class="collapsible">
       <div class="row">
       <div class="column">
-      Device 1 
+
+        <script>
+        //Information about the device name 
+        var device_name = {
+            "async": true,
+            "crossDomain": true,
+            "url": " https://genergetic.us-south.cf.appdomain.cloud/readings/kevmacpro&status",
+            "method": "GET"
+        }
+
+        $.ajax(device_name).done(function(response) {
+            console.log(response.readings);
+
+
+            document.getElementById("name").innerHTML = response.results[0];
+
+
+
+
+        });
+
+
+
+
+
+        </script>
+     <h3 id = "name">Device 1</h3> 
       </div>
         <div class="column">
-          <img class="newappIcon" src="images/img_1.jpg">
-        </div>
-    
-    </div>
-    </button>
-        <div class="content">
             <h3>Current Readings </h3>
             <br>
             <h4><b>Voltage</b>: 20 </h4>
@@ -74,34 +94,17 @@
             <div id="test">
                 <button id="Device_1" style="margin-bottom: 5%" class="float-left submit-button">Go back</button>
 
-            </div>
-            <script type="text/javascript">
-                document.getElementById("Device_1").onclick = function() {
-                    location.href = "index.html";
-                };
-            </script>
-        </div>
+    </div>
+    <script type="text/javascript">
+        document.getElementById("Device_1").onclick = function() {
+            location.href = "index.html";
+        };
+    </script>
+    </div>
 
-        <script>
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
+    </div>
+    </button>
 
-            for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-            }
-        </script>
-        <svg id="svg" viewBox="0 0 600 600">
-</svg>
-
-        <button id="draw">Draw</button>
 </body>
 
 </html>
