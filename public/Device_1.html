@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </script>
 </head>
@@ -24,18 +23,48 @@
         }
 
         $.ajax(time_Rp).done(function(response) {
+            response.readings.sort(function(reading1, reading2){
+                return reading1.timestamp - reading2.timestamp
+            })
             console.log(response.readings);
-
+            var d = new Date(0);
             d.setUTCSeconds(response.readings[0].timestamp);
             document.getElementById("demo").innerHTML = d;
 
             document.getElementById("power").innerHTML = response.readings[0].power;
-            var y =  response.readings[0].power;
-            var x = document.getElementById("myMeter").value;
-            document.getElementById("demo").value.innerHTML = y;
+            var xValues = []
+            var yValues = []
 
+            for(reading in response.readings){
+                if(reading >= 10){
+                    break;
+                }
+                yValues.push(response.readings[reading].power)
+                xValues.push(response.readings[reading].timestamp)
+                
+            }
+            
+            new Chart("myChart", {
+                type: "line",
+                data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+                },
+                options: {
+                legend: {display: false},
+                scales: {
+                    yAxes: [{ticks: {min: 0, max:500}}],
+                }
+                }
+            });
 
-        });
+            });
     </script>
 
     <div style="padding-left: 10%; padding-right: 10%; margin-left: 20%; margin-right: 20%;">
@@ -63,39 +92,15 @@
         <div class="column">
             <h3>Current Readings </h3>
             <br>
-            <h4><b>Voltage</b>: 20 </h4>
             <h4 id="current_reading_1"><b>last turned on</b>
                 <p id="demo"></p>
-
-
             </h4>
 
             <label for="disk_c"><h4><b>Total power utilizations</b> <p id="power"></p></h4></label>
-            <meter id="disk_c" value=".4" low="0.2" optimum="-.5" style="margin">4</meter><br>
+            <meter id="disk_c" value=".4" low="0.2" optimum="-.5" style="margin">4</meter><br><br>
             <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
             <script>
-                var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-                var yValues = [7,8,8,9,9,9,10,11,14,14,15];
                 
-                new Chart("myChart", {
-                  type: "line",
-                  data: {
-                    labels: xValues,
-                    datasets: [{
-                      fill: false,
-                      lineTension: 0,
-                      backgroundColor: "rgba(0,0,255,1.0)",
-                      borderColor: "rgba(0,0,255,0.1)",
-                      data: yValues
-                    }]
-                  },
-                  options: {
-                    legend: {display: false},
-                    scales: {
-                      yAxes: [{ticks: {min: 6, max:16}}],
-                    }
-                  }
-                });
                 </script>
             <div id="test">
                 <button id="Device_1" style="margin-bottom: 5%" class="float-left submit-button">Go back</button>
@@ -110,120 +115,6 @@
 
     </div>
     </button>
-
-
-    <h3 class="text-primary text-center">
-        Morris js charts
-    </h3>
-    <div class="row">
-        <div class="col-sm-6 text-center">
-            <label class="label label-success">Area Chart</label>
-            <div id="area-chart"></div>
-        </div>
-        <div class="col-sm-6 text-center">
-            <label class="label label-success">Line Chart</label>
-            <div id="line-chart"></div>
-        </div>
-        <div class="col-sm-6 text-center">
-            <label class="label label-success">Bar Chart</label>
-            <div id="bar-chart"></div>
-        </div>
-        <div class="col-sm-6 text-center">
-            <label class="label label-success">Bar stacked</label>
-            <div id="stacked"></div>
-        </div>
-        <div class="col-sm-6 col-sm-offset-3 text-center">
-            <label class="label label-success">Pie Chart</label>
-            <div id="pie-chart"></div>
-        </div>
-
-    </div>
-    <script>
-        var data = [{
-                y: '2014',
-                a: 50,
-                b: 90
-            }, {
-                y: '2015',
-                a: 65,
-                b: 75
-            }, {
-                y: '2016',
-                a: 50,
-                b: 50
-            }, {
-                y: '2017',
-                a: 75,
-                b: 60
-            }, {
-                y: '2018',
-                a: 80,
-                b: 65
-            }, {
-                y: '2019',
-                a: 90,
-                b: 70
-            }, {
-                y: '2020',
-                a: 100,
-                b: 75
-            }, {
-                y: '2021',
-                a: 115,
-                b: 75
-            }, {
-                y: '2022',
-                a: 120,
-                b: 85
-            }, {
-                y: '2023',
-                a: 145,
-                b: 85
-            }, {
-                y: '2024',
-                a: 160,
-                b: 95
-            }],
-            config = {
-                data: data,
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Total Income', 'Total Outcome'],
-                fillOpacity: 0.6,
-                hideHover: 'auto',
-                behaveLikeLine: true,
-                resize: true,
-                pointFillColors: ['#ffffff'],
-                pointStrokeColors: ['black'],
-                lineColors: ['gray', 'red']
-            };
-        config.element = 'area-chart';
-        Morris.Area(config);
-        config.element = 'line-chart';
-        Morris.Line(config);
-        config.element = 'bar-chart';
-        Morris.Bar(config);
-        config.element = 'stacked';
-        config.stacked = true;
-        Morris.Bar(config);
-        Morris.Donut({
-            element: 'pie-chart',
-            data: [{
-                label: "Friends",
-                value: 30
-            }, {
-                label: "Allies",
-                value: 15
-            }, {
-                label: "Enemies",
-                value: 45
-            }, {
-                label: "Neutral",
-                value: 10
-            }]
-        });
-    </script>
-
 </body>
 
 </html>
