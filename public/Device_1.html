@@ -8,23 +8,14 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</script>
 </head>
 
 <body>
 
 
     <script>
-        /*  var requestOptions = {                                                                                                                                                                                                                                 method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                    redirect: 'follow'
-                                                                                                                                                                                                                                                                                                                                                };
-
-                                                                                                                                                                                                                                                                                                                                                fetch(" https://genergetic.us-south.cf.appdomain.cloud/readings/b827ebbade18&status", requestOptions)
-                                                                                                                                                                                                                                                                                                                                                    .then(response => response.text())
-                                                                                                                                                                                                                                                                                                                                                    //.then(result => console.log(result))
-                                                                                                                                                                                                                                                                                                                                                    .catch(error => console.log('error', error));
-                                                                                                                                                                                                                                                                                                                                                console.log("%s %o", JSON.stringify(result['result']));
-                                                                                                                                                                                                                                                                                                                                            */
-
         var time_Rp = {
             "async": true,
             "crossDomain": true,
@@ -89,7 +80,31 @@
 
             <label for="disk_c"><h4><b>Total power utilizations</b> <p id="power"></p></h4></label>
             <meter id="disk_c" value=".4" low="0.2" optimum="-.5" style="margin">4</meter><br>
-
+            <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            <script>
+                var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+                var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+                
+                new Chart("myChart", {
+                  type: "line",
+                  data: {
+                    labels: xValues,
+                    datasets: [{
+                      fill: false,
+                      lineTension: 0,
+                      backgroundColor: "rgba(0,0,255,1.0)",
+                      borderColor: "rgba(0,0,255,0.1)",
+                      data: yValues
+                    }]
+                  },
+                  options: {
+                    legend: {display: false},
+                    scales: {
+                      yAxes: [{ticks: {min: 6, max:16}}],
+                    }
+                  }
+                });
+                </script>
             <div id="test">
                 <button id="Device_1" style="margin-bottom: 5%" class="float-left submit-button">Go back</button>
 
