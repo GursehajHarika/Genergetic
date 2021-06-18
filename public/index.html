@@ -14,6 +14,38 @@
 
 
     <script>
+        //Information about the device 1
+        var device_name = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://genergetic.us-south.cf.appdomain.cloud/devices",
+            "method": "GET"
+        }
+        $.ajax(device_name).done(function(response) {
+            console.log(response.results.length);
+            var a = 0;
+            document.getElementById("name_1").innerHTML = response.results[0].typeId;
+            var name_1 = response.results[0].deviceId;
+            var newlink_1 = "https://genergetic.us-south.cf.appdomain.cloud/readings/" + name_1 + "&status"
+
+        });
+
+        //Information about the device 2
+        var device_2 = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://genergetic.us-south.cf.appdomain.cloud/devices",
+            "method": "GET"
+        }
+
+        $.ajax(device_2).done(function(response) {
+            console.log(response.results.length);
+            var a = 0;
+            document.getElementById("name").innerHTML = response.results[1].typeId;
+
+
+        });
+
         var time_Rp = {
             "async": true,
             "crossDomain": true,
@@ -21,59 +53,14 @@
             "method": "GET"
         }
         $.ajax(time_Rp).done(function(response) {
-                    console.log(response.readings);
-                    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-                    d.setUTCSeconds(response.readings[0].timestamp);
-                    document.getElementById("demo").innerHTML = d;
-                    document.getElementById("power").innerHTML = response.readings[0].power;
-
-                    //Information about the device 1
-                    var device_name = {
-                        "async": true,
-                        "crossDomain": true,
-                        "url": "https://genergetic.us-south.cf.appdomain.cloud/devices",
-                        "method": "GET"
-                    }
-                    $.ajax(device_name).done(function(response) {
-                        console.log(response.results.length);
-                        var a = 0;
-                        document.getElementById("name_1").innerHTML = response.results[0].typeId;
-                        var name_1 = response.results[0].deviceId;
-                        var newlink_1 = "https://genergetic.us-south.cf.appdomain.cloud/readings/" + name_1 + "&status"
-
-                    });
-
-                    //Information about the device 2
-                    var device_2 = {
-                        "async": true,
-                        "crossDomain": true,
-                        "url": "https://genergetic.us-south.cf.appdomain.cloud/devices",
-                        "method": "GET"
-                    }
-
-                    $.ajax(device_2).done(function(response) {
-                        console.log(response.results.length);
-                        var a = 0;
-                        document.getElementById("name").innerHTML = response.results[1].typeId;
+            console.log(response.readings);
+            var d = new Date(0);
+            d.setUTCSeconds(response.readings[0].timestamp);
+            document.getElementById("demo").innerHTML = d;
+            document.getElementById("power").innerHTML = response.readings[0].power;
 
 
-                    });
-
-                    var time_Rp = {
-                        "async": true,
-                        "crossDomain": true,
-                        "url": newlink_1,
-                        "method": "GET"
-                    }
-                    $.ajax(time_Rp).done(function(response) {
-                        console.log(response.readings);
-                        var d = new Date(0);
-                        d.setUTCSeconds(response.readings[0].timestamp);
-                        document.getElementById("demo").innerHTML = d;
-                        document.getElementById("power").innerHTML = response.readings[0].power;
-
-
-                    });
+        });
     </script>
 
     <div style="padding-left: 10%; padding-right: 10%; margin-left: 20%; margin-right: 20%;">
