@@ -1,0 +1,6 @@
+---
+applications:
+ - name: Genergetic
+   random-route: true
+   memory: 256M
+  
