@@ -1,9 +1,11 @@
 
-Dashboard
+#Dashboard
+
+##1. Home page
 
 ![](public/images/Current_dashboard.jpg)
 
-1. Home page
+
 
 ### Description: 
 * Once users sign up they can view the devices they have on their account. Once you click on one of the devices, the most up to date reading + time it wqas last turn on will be presented, and users can click on learn more to get a more detailed granular view.
@@ -11,7 +13,7 @@ Dashboard
 
 
 
-2. Detailed View
+##2. Detailed View
 
 ![Detail View](public/images/Current_Detailed_view.jpg)
 
@@ -20,10 +22,10 @@ Dashboard
 
 
 
-Future Dashboard
+#Future Dashboard
 
 
-1. Summary Tab
+##1. Summary Tab
 
 ![Dashboard_summary](public/images/Dashboard_summary.png)
 
@@ -36,7 +38,7 @@ Future Dashboard
   * Under the energy use with predictions, we have the cost of energy used by the user
 
 
-2. Personalized Energy Education Tab 
+##2. Personalized Energy Education Tab 
 
 
 ![Dashboard](public/images/Dashboard_Education.png)
