@@ -5,8 +5,5 @@
 
 [Box Note](https://ibm.ent.box.com/folder/136788401615?s=cuqihw747dg3lc8dvlhan0m4gixnp59h)
 
-Architecture Diagram:
-
-![Architecture Diagram](https://github.com/GursehajHarika/Genergetic/blob/main/public/images/architecture_diagram.png)
 
 
