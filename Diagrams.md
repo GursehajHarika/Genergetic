@@ -17,6 +17,6 @@ Genergetic project consists three main parts, Genergetic app, Genergetic server 
 ### Publishing new readings:
 ![Sequence Diagram](https://github.com/GursehajHarika/Genergetic/blob/main/public/images/Sequence_Diagram.png)
 #### Descrption:
-   The Automated script from Genergetic IoT reads the readings from the sensors and constructs a MQTT message to send. The Waston IoT Platform recvices the message, return a successful message to the IoT, and trigger the suscribption event. Genergetic server listen to the event, construct a document and insert it into Cloudant database. The Cloudant databse sends successful messsage.
+   The Automated script from Genergetic IoT reads the readings from the sensors and constructs a MQTT message to send. The Waston IoT Platform recvices the message, returns a successful message to the IoT, and triggers the suscribption event. Genergetic server listen to the event, construct a document and insert it into Cloudant database. The Cloudant databse sends successful messsage.
 
 
