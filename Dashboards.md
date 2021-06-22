@@ -1,7 +1,7 @@
 
-#Dashboard
+# Dashboard
 
-##1. Home page
+## 1. Home page
 
 ![](public/images/Current_dashboard.jpg)
 
@@ -13,7 +13,7 @@
 
 
 
-##2. Detailed View
+## 2. Detailed View
 
 ![Detail View](public/images/Current_Detailed_view.jpg)
 
@@ -22,10 +22,10 @@
 
 
 
-#Future Dashboard
+# Future Dashboard
 
 
-##1. Summary Tab
+## 1. Summary Tab
 
 ![Dashboard_summary](public/images/Dashboard_summary.png)
 
@@ -38,7 +38,7 @@
   * Under the energy use with predictions, we have the cost of energy used by the user
 
 
-##2. Personalized Energy Education Tab 
+## 2. Personalized Energy Education Tab 
 
 
 ![Dashboard](public/images/Dashboard_Education.png)
