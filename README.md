@@ -9,4 +9,4 @@ Architecture Diagram:
 
 ![Architecture Diagram](https://github.com/GursehajHarika/Genergetic/blob/main/public/images/architecture_diagram.png)
 
-
+![Diagrams](/Diagrams.md)
