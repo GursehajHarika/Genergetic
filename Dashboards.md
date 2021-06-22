@@ -1,6 +1,22 @@
 
 Dashboard
 
+![](public/images/Current_dashboard.jpg)
+
+1. Home page
+
+### Description: 
+* Once users sign up they can view the devices they have on their account. Once you click on one of the devices, the most up to date reading + time it wqas last turn on will be presented, and users can click on learn more to get a more detailed granular view.
+
+
+
+
+2. Detailed View
+
+![Detail View](public/images/Current_Detailed_view.jpg)
+
+### Description:
+* In this section of the dashboard, Users get to view all the data points in a graph format and when the device was last turned. This is done to help the user understand how their current usage is affecting their power usage. 
 
 
 
@@ -20,7 +36,10 @@ Future Dashboard
   * Under the energy use with predictions, we have the cost of energy used by the user
 
 
-2. ![Dashboard](public/images/Dashboard_Education.png)
+2. Personalized Energy Education Tab 
+
+
+![Dashboard](public/images/Dashboard_Education.png)
 
 
  ### Discription: 
