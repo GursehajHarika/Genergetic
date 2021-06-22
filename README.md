@@ -7,3 +7,14 @@
 
 
 [Diagrams](/Diagrams.md)
+
+Future plans
+
+Dashboard
+
+![Dashboard_summary](public/images/Dashboard_summary.png)
+
+### Description:
+
+
+
