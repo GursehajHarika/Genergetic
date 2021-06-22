@@ -1,0 +1,26 @@
+url: https://genergetic.us-south.cf.appdomain.cloud
+get '/devices/': get all devices
+get '/devices/:deviceId/': get the devices with all it's event ids, return a json object ex 
+{
+    "deviceId": "kevmacpro",
+    "typeId": "MacBook",
+    "eventIds": [
+        "status"
+    ]
+}
+get '/readings/:deviceId&:eventId, return data ex
+{
+    "deviceId": "kevmacpro",
+    "eventId": "status",
+    "readings": [
+        {
+            "timestamp": 1000000,
+            "power": 70
+        },
+ {
+            "timestamp": 1000000,
+            "power": 70
+        },
+    ]
+}
+

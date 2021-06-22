@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Device 1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</script>
+</head>
+
+<body>
+
+
+    <script>
+        var time_Rp = {
+            "async": true,
+            "crossDomain": true,
+            "url": " https://genergetic.us-south.cf.appdomain.cloud/readings/kevmacpro&status",
+            "method": "GET"
+        }
+
+        $.ajax(time_Rp).done(function(response) {
+            response.readings.sort(function(reading1, reading2){
+                return reading1.timestamp - reading2.timestamp
+            })
+            console.log(response.readings);
+            var d = new Date(0);
+            d.setUTCSeconds(response.readings[0].timestamp);
+            document.getElementById("demo").innerHTML = d;
+
+            document.getElementById("power").innerHTML = response.readings[0].power;
+            var xValues = []
+            var yValues = []
+
+            for(reading in response.readings){
+                if(reading >= 10){
+                    break;
+                }
+                yValues.push(response.readings[reading].power)
+                xValues.push(response.readings[reading].timestamp)
+                
+            }
+            
+            new Chart("myChart", {
+                type: "line",
+                data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+                },
+                options: {
+                legend: {display: false},
+                scales: {
+                    yAxes: [{ticks: {min: 0, max:500}}],
+                }
+                }
+            });
+
+            });
+    </script>
+
+    <div style="padding-left: 10%; padding-right: 10%; margin-left: 20%; margin-right: 20%;">
+        <button class="collapsible">
+      <div class="row">
+      <div class="column">
+ <h1>Detailed view</h1>
+        <script>
+        //Information about the device name 
+        var device_name = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://genergetic.us-south.cf.appdomain.cloud/devices",
+            "method": "GET"
+        }
+
+        $.ajax(device_name).done(function(response) {
+            console.log(response.results.length);
+            var a = 0;
+            document.getElementById("name").innerHTML = response.results[0].typeId;
+        });
+        </script>
+     <h3 id = "name">Device 1</h3> 
+      </div>
+        <div class="column">
+            <h3>Current Readings </h3>
+            <br>
+            <h4 id="current_reading_1"><b>last turned on</b>
+                <p id="demo"></p>
+            </h4>
+
+            <label for="disk_c"><h4><b>Total power utilizations</b> <p id="power"></p></h4></label>
+            <meter id="disk_c" value=".4" low="0.2" optimum="-.5" style="margin">4</meter><br><br>
+            <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            <script>
+                
+                </script>
+            <div id="test">
+                <button id="Device_1" style="margin-bottom: 5%" class="float-left submit-button">Go back</button>
+
+    </div>
+    <script type="text/javascript">
+        document.getElementById("Device_1").onclick = function() {
+            location.href = "index.html";
+        };
+    </script>
+    </div>
+
+    </div>
+    </button>
+</body>
+
+</html>

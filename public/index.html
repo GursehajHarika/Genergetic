@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Genergetic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <script>
+        var time_Rp = {
+            "async": true,
+            "crossDomain": true,
+            "url": 'https://genergetic.us-south.cf.appdomain.cloud/devices',
+            "method": "GET"
+        }
+
+        $.ajax(time_Rp).done(function(response) {
+            var name_1 = response.results[0].typeId;
+            document.getElementById("name_1").innerHTML = name_1;
+            //Information about the device 1
+            var device_name = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://genergetic.us-south.cf.appdomain.cloud/readings/" + response.results[0].deviceId + "&status",
+                "method": "GET"
+            }
+            $.ajax(device_name).done(function(res) {
+                var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                d.setUTCSeconds(res.readings[0].timestamp);
+                document.getElementById("demo").innerHTML = d;
+                document.getElementById("power").innerHTML = res.readings[0].power;
+                var a = 0;
+            });
+
+
+            var name_2 = response.results[1].deviceId;
+
+            device_name = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://genergetic.us-south.cf.appdomain.cloud/readings/" + name_2 + "&status",
+                "method": "GET"
+            }
+
+            $.ajax(device_name).done(function(res) {
+                var a = 0;
+                document.getElementById("name").innerHTML = response.results[1].typeId;
+                var d = new Date(0);
+                d.setUTCSeconds(res.readings[1].timestamp);
+                document.getElementById("demo1").innerHTML = d;
+                document.getElementById("power1").innerHTML = res.readings[1].power;
+            });
+        });
+    </script>
+
+    <div style="padding-left: 10%; padding-right: 10%; margin-left: 20%; margin-right: 20%;">
+        <h1 style="text-align: center;"><b>Welcome to Genergetic </b></h1>
+        <button class="collapsible">
+      <div class="row">
+      <div class="column" style="text-align: center;">
+        <script>
+        
+  
+          </script>
+       <h3 id = "name_1">Device 1</h3> </div>
+        <div class="column">
+          <img class="newappIcon" src="images/img_1.jpg">
+        </div>
+    
+    </div>
+    </button>
+        <div class="content">
+            <h3>Current Readings </h3>
+            <br>
+            <h4 id="current_reading_1"><b>Time since last turned on</b>
+                <p id="demo"></p>
+
+            </h4>
+
+            <label for="disk_c"><h4><b>Total power utilizations</b> <p id="power"></p></h4></label>
+            <meter id="disk_c" value=".4" low="0.2" optimum="-.5" style="margin">4</meter><br>
+
+            <div id="test">
+                <button id="Device_1" style="margin-bottom: 5%" class="float-left submit-button">Learn More</button>
+
+            </div>
+            <script type="text/javascript">
+                document.getElementById("Device_1").onclick = function() {
+                    location.href = "Device_1.html";
+                };
+            </script>
+        </div>
+
+        <button class="collapsible">
+          <div class="row">
+          <div class="column" style="text-align: center;">
+            <script>
+           
+              </script>
+           <h3 id = "name">Device 2</h3>  
+          </div>
+            <div class="column">
+              <img class="newappIcon" src="images/img_2.jpg">
+            </div>
+        
+        </div>
+        </button>
+        <div class="content">
+            <h3>Current Readings </h3>
+            <br>
+            <h4 id="current_reading_1"><b>Time since last turned on</b>
+                <p id="demo1"></p>
+
+            </h4>
+            <label for="disk_c"><h4><b>Total power utilizations</b> <p id="power1"></p></h4></label>
+            <meter id="disk_c" value=".4" low="0.2" optimum="-.5" style="margin">4</meter><br>
+
+
+            <div id="test">
+                <button id="Device_2" style="margin-bottom: 5%;" class="float-left submit-button">Learn More</button>
+
+            </div>
+            <script type="text/javascript">
+                document.getElementById("Device_2").onclick = function() {
+                    location.href = "homepage.html";
+                };
+            </script>
+        </div>
+
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            }
+        </script>
+    </div>
+</body>
+
+</html>

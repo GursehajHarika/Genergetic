@@ -1,0 +1,387 @@
+/* style.css
+ * This file provides css styles.
+ */
+
+body,
+html {
+    background-color: #3b4b54;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.newappIcon {
+    padding-top: 10%;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 2em;
+    max-width: 200px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.leftHalf {
+    float: left;
+    background-color: #26343f;
+    width: 45%;
+    height: 100%;
+}
+
+.rightHalf {
+    float: right;
+    width: 55%;
+    background-color: #313f4a;
+    height: 100%;
+    overflow: auto;
+}
+
+.blue {
+    color: #00aed1;
+}
+
+table {
+    table-layout: fixed;
+    width: 800px;
+    margin: 0 auto;
+    word-wrap: break-word;
+    padding-top: 10%;
+}
+
+th {
+    border-bottom: 1px solid #000;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 2px 20px;
+}
+
+.env-var {
+    text-align: right;
+    border-right: 1px solid #000;
+    width: 30%;
+}
+
+pre {
+    padding: 0;
+    margin: 0;
+}
+
+.collapsible {
+    background-color: #777;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    color: black;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #f1f1f1;
+}
+
+
+/* Popup container - can be anything you want */
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* The actual popup */
+
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+
+/* Popup arrow */
+
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+
+/* Toggle this class - hide and show the popup */
+
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+
+/* Add animation (fade in the popup) */
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+// VARIABLES
+$default-delay: .2s;
+$bars: 15;
+$graph-height: 253px;
+// MIXINS
+//Horizontal Bar Color Mixin 
+@mixin stat-bar($color-dark, $color-light, $direction, $dir-webkit) {
+    background-image: -webkit-linear-gradient($dir-webkit, $color-light 0%, $color-light 47%, $color-dark 50%, $color-dark 100%);
+    background-image: linear-gradient($direction, $color-light 0%, $color-light 47%, $color-dark 50%, $color-dark 100%);
+}
+
+// Animation Mixin 
+@mixin bar-animation($time, $dimension) {
+    visibility: hidden;
+    @if $dimension==width {
+        width: 0;
+        -webkit-animation: animate-width;
+        -moz-animation: animate-width;
+        animation: animate-width;
+    }
+    @if $dimension==height {
+        height: 0;
+        -webkit-animation: animate-height;
+        -moz-animation: animate-height;
+        animation: animate-height;
+    }
+    animation-timing-function: cubic-bezier(.35, .95, .67, .99);
+    -webkit-animation-timing-function: cubic-bezier(.35, .95, .67, .99);
+    -moz-animation-timing-function: cubic-bezier(.35, .95, .67, .99);
+    animation-duration: $time*2;
+    -webkit-animation-duration: $time*2;
+    -moz-animation-duration: $time*2;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes animate-width {
+    0% {
+        width: 0;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@-moz-keyframes animate-width {
+    0% {
+        width: 0;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@keyframes animate-width {
+    0% {
+        width: 0;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@-webkit-keyframes animate-height {
+    0% {
+        height: 0;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@-moz-keyframes animate-height {
+    0% {
+        height: 0;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@keyframes animate-height {
+    0% {
+        height: 0;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+//STYLES
+body {
+    background-color: #3b4150;
+    font-family: arial, sans-serif;
+    color: #cdcdcd;
+}
+
+#bar-chart {
+    height: 380px;
+    width: 70%;
+    position: relative;
+    margin: 50px auto 0;
+    * {
+        box-sizing: border-box;
+    }
+    .graph {
+        height: 283px;
+        position: relative;
+    }
+    .bars {
+        height: $graph-height;
+        padding: 0 2%;
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+    }
+    .bar-group {
+        display: block;
+        float: left;
+        height: 100%;
+        position: relative;
+        width: 12%;
+        margin-right: 10%;
+        &:last-child {
+            margin-right: 0;
+        }
+        .bar {
+            @include bar-animation($default-delay, height);
+            box-shadow: 1px 0 2px rgba(0, 0, 0, .15);
+            border: 1px solid #2d2d2d;
+            border-radius: 3px 3px 0 0;
+            bottom: 0;
+            cursor: pointer;
+            height: 0;
+            position: absolute;
+            text-align: center;
+            width: 25%;
+            &:nth-child(2) {
+                left: 35%;
+            }
+            &:nth-child(3) {
+                left: 70%;
+            }
+            span {
+                display: none;
+            }
+        }
+        @for $i from 1 through 15 {
+            .bar-#{$i} {
+                animation-delay: $default-delay+.1*$i;
+                -webkit-animation-delay: $default-delay+.1*$i;
+            }
+        }
+    }
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .x-axis {
+        bottom: 0;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        li {
+            float: left;
+            margin-right: 10.5%;
+            font-size: 11px;
+            width: 11.5%;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    .y-axis {
+        position: absolute;
+        text-align: right;
+        width: 100%;
+        li {
+            border-top: 1px solid #4e5464;
+            display: block;
+            height: $graph-height/4;
+            width: 100%;
+            span {
+                display: block;
+                font-size: 11px;
+                margin: -10px 0 0 -60px;
+                padding: 0 10px;
+                width: 40px;
+            }
+        }
+    }
+    .stat-1 {
+        @include stat-bar(#cf3a02, #ff4500, to right, left);
+    }
+    .stat-2 {
+        @include stat-bar(#79a602, #b8f123, to right, left);
+    }
+    .stat-3 {
+        @include stat-bar(#0383a9, #00c5ff, to right, left);
+    }
+}
