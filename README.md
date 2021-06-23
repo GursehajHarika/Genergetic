@@ -6,6 +6,16 @@
 
 ###### What's the problem?
 
+United Nations: Goal 7
+Ensure access to affordable, reliable, sustainable and modern energy for all.
+
+Goal 7: Target 7.3
+By 2030, double the global rate of improvement in energy efficiency
+
+###### How can energy help?
+
+###### The Idea
+
 An outlet device and dashboard to improve energy efficiency with Cloud-powered data, education and cost-reduction. 
 
 ## **Long Description**
