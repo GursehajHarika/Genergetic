@@ -12,7 +12,7 @@ Ensure access to affordable, reliable, sustainable and modern energy for all.
 Goal 7: Target 7.3
 By 2030, double the global rate of improvement in energy efficiency
 
-###### How can energy help?
+###### How can technology help?
 
 ###### The Idea
 
