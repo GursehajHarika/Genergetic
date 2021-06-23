@@ -8,7 +8,7 @@
 
 [Diagrams](/Diagrams.md)
 
-[Dashboard](/Dashboard.md)
+[Dashboard](/Dashboards.md)
 
 
 
