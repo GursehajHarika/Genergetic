@@ -15,10 +15,12 @@ Genergetic is an easy and affordable end-to-end device and dashboard to improve 
 
 *How Genergetic work?*
 
-Place a Gen-Tab between any device and a power outlet. 
-Connect your Gen-Tab to your local Wi-Fi.
-Register your Gen-Tab onto the Genergetic Platform. 
-Monitor your energy consumption and finances using cloud-powered data. Genergetic will even curate custom trend predictions responding to the time of year, season, rebates, off-peak periods, and more.
+![1](https://user-images.githubusercontent.com/52797904/123019933-77512700-d39f-11eb-9498-f4287cd411b9.png)
+
+- Place a Gen-Tab between any device and a power outlet. 
+- Connect your Gen-Tab to your local Wi-Fi.
+- Register your Gen-Tab onto the Genergetic Platform. 
+- Monitor your energy consumption and finances using cloud-powered data. Genergetic will even curate custom trend predictions responding to the time of year, season, rebates, off-peak periods, and more.
 
 
 Genergetic is supported by a host of IBM technology, smart hardware and web-based applications. An mqtt event is published by the Gen-Tab Smart IOT Hardware, and updated on a regular interval. The event is relayed via the IBM Cloud Foundry Node.js server to the IBM IOT Platform. Genergetic manipulates real-time mqtt requests, storing the data array on IBM Cloudant. This array is then stored onto IBM Cloud Storage, manipulated using IBM Watson Machine Learning, and transmitted to the IBM Cognos Analytics service. The software creates visual dashboards sent via an API call to the front-end IBM Cloud Foundry Web-Application. Here, users directly access curated device cluster dashboards with historical & real-time data updates and improve their device use.
