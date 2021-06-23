@@ -2,13 +2,13 @@
 
 ![1](https://user-images.githubusercontent.com/52797904/123019809-39ec9980-d39f-11eb-96a1-086b3a8291a4.png)
 
-##**Short Description**
+## **Short Description**
 
-######What's the problem?
+###### What's the problem?
 
 An outlet device and dashboard to improve energy efficiency with Cloud-powered data, education and cost-reduction. 
 
-##**Long Description**
+## **Long Description**
 
 Administration has projected that world energy consumption will grow by nearly 50% between 2018 and 2050. In response, the United States Environmental Protection Agency suggests that using energy more efficiently is one of the fastest, most cost-effective ways to save money, reduce greenhouse gas emissions, create jobs, and meet growing energy demand.
 
