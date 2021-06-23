@@ -8,7 +8,7 @@
 
 [Diagrams](/Diagrams.md)
 
-Future plans
+[Dashboard](/Dashboard.md)
 
 
 
